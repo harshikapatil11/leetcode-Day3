@@ -1,0 +1,19 @@
+class Solution(object):
+    def hIndex(self, citations):
+        result = 0
+
+        for i in range(len(citations) - 1):
+            for j in range(len(citations) - 1 - i):
+                if citations[j] < citations[j + 1]:  
+                    t = citations[j]
+                    citations[j] = citations[j + 1]
+                    citations[j + 1] = t
+
+        for i in range(len(citations)):  
+            if citations[i] >= i + 1:
+                result = i+1
+            else:
+                
+                break
+
+        return result
