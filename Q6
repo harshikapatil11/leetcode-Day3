@@ -1,0 +1,16 @@
+class Solution(object):
+    def jump(self, nums):
+        count = [float('inf')] * len(nums)  
+        count[0] = 0  
+        end_point = 0
+
+        for i in range(len(nums)):
+            end_point = max(end_point, i + nums[i])  
+
+            for j in range(i + 1, min(i + nums[i] + 1, len(nums))):  
+                count[j] = min(count[j], count[i] + 1)  
+
+            if end_point >= len(nums) - 1:
+                return count[-1]  
+
+        return count[-1]
